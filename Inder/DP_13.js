@@ -19,26 +19,33 @@ The factorial of 5 is: 120
  */
 
 function countFactorial(num) {
-    if(num == 0 || num == 1){
-     return num;
-    }
-    else {
-     return num * countFactorial(num - 1);
-    }
- }
- 
- function factorial() {
-     console.log("Welcome to CalcPro Factorial Calculation");
-     const num = prompt('Please enter the number for which you want to calculate the factorial :');
- 
-     if(!num){
-         console.log('no number provided');
-         return 
-     }
- 
-     const result = countFactorial(num);
-     console.log(`The factorial of ${num} is: ${result}`);
- 
- }
- 
- factorial();
+  if (num < 0) {
+    throw new Error("Factorial is not defined for negative numbers.");
+  }
+  if (num == 0 || num == 1) {
+    return num;
+  } else {
+    return num * countFactorial(num - 1);
+  }
+}
+
+function factorial() {
+  console.log("Welcome to CalcPro Factorial Calculation");
+  const num = prompt(
+    "Please enter the number for which you want to calculate the factorial :"
+  );
+
+  if (!num) {
+    console.log("no number provided");
+    return;
+  }
+
+  try {
+    const result = countFactorial(num);
+    console.log(`The factorial of ${num} is: ${result}`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+factorial();
